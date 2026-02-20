@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinForensics | Money Muling Detection Engine</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="gradient-bg">
+        <div class="gradient-sphere"></div>
+        <div class="gradient-sphere-2"></div>
+        <div class="gradient-sphere-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>FinForensics</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                <a href="#"><i class="fas fa-search"></i> Analysis</a>
+                <a href="#"><i class="fas fa-file-alt"></i> Reports</a>
+                <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            </div>
+            <div class="nav-status">
+                <span class="status-indicator"></span>
+                <span>Live System</span>
+                <span class="badge">v2.0</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="glow-text">Financial Crime Detection <span class="gradient-text">Engine</span></h1>
+            <p class="subtitle">Advanced money muling network analysis with real-time graph visualization and pattern detection</p>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="upload-section" id="uploadSection">
+            <div class="upload-card" id="dropZone">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h3>Upload Transaction Data</h3>
+                <p class="upload-text">Drag & drop your CSV file here or click to browse</p>
+                <div class="file-requirements">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Required: transaction_id, sender_id, receiver_id, amount, timestamp</span>
+                </div>
+                <input type="file" id="fileInput" accept=".csv" hidden>
+                <button class="btn btn-primary" id="browseBtn">
+                    <i class="fas fa-search"></i> Browse Files
+                </button>
+                <div class="sample-data" id="sampleDataBtn">
+                    <i class="fas fa-flask"></i> Load Sample Data
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Section -->
+        <div class="loading-section hidden" id="loadingSection">
+            <div class="loader-container">
+                <div class="loader">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(0, 243, 255, 0.2)" stroke-width="4"/>
+                        <circle class="loader-circle" cx="50" cy="50" r="45" fill="none" stroke="url(#gradient)" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="loading-text">
+                    <h3>Analyzing Transaction Patterns</h3>
+                    <p>Detecting money muling networks...</p>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Dashboard -->
+        <div class="results-section hidden" id="resultsSection">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalAccounts">0</h3>
+                        <p>Total Accounts</p>
+                    </div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="suspiciousAccounts">0</h3>
+                        <p>Suspicious Accounts</p>
+                    </div>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="fraudRings">0</h3>
+                        <p>Fraud Rings</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="processingTime">0</h3>
+                        <p>Processing Time</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Split Dashboard -->
+            <div class="split-dashboard">
+                <!-- Left Panel - Graph Visualization -->
+                <div class="graph-panel">
+                    <div class="graph-container">
+                        <div class="graph-header">
+                            <div class="graph-title">
+                                <i class="fas fa-network-wired"></i>
+                                <h3>Money Flow Network</h3>
+                            </div>
+                            <div class="graph-controls">
+                                <button class="btn-icon" id="zoomInBtn" title="Zoom In">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                                <button class="btn-icon" id="zoomOutBtn" title="Zoom Out">
+                                    <i class="fas fa-search-minus"></i>
+                                </button>
+                                <button class="btn-icon" id="resetViewBtn" title="Reset View">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button class="btn-icon" id="toggleAnimation" title="Toggle Animation">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="graph-legend">
+                            <div class="legend-item">
+                                <span class="legend-color normal-node"></span>
+                                <span>Normal Account</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color suspicious-node"></span>
+                                <span>Suspicious Account</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color ring-node"></span>
+                                <span>Ring Member</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color edge"></span>
+                                <span>Money Flow</span>
+                            </div>
+                        </div>
+                        <div class="graph-visualization" id="graph"></div>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Human Transfer Animation -->
+                <div class="animation-panel">
+                    <div class="animation-container">
+                        <div class="animation-header">
+                            <i class="fas fa-exchange-alt"></i>
+                            <h3>Live Money Transfers</h3>
+                        </div>
+                        <div class="animation-canvas" id="animationCanvas">
+                            <!-- Humans will be drawn here via canvas -->
+                            <canvas id="humanCanvas" width="400" height="500"></canvas>
+                        </div>
+                        <div class="transfer-log" id="transferLog">
+                            <div class="log-header">
+                                <i class="fas fa-history"></i>
+                                <span>Recent Transfers</span>
+                            </div>
+                            <div class="log-entries" id="logEntries">
+                                <!-- Transfer logs will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fraud Rings Table and Actions -->
+            <div class="rings-section">
+                <div class="rings-header">
+                    <h3><i class="fas fa-ring"></i> Detected Fraud Rings</h3>
+                    <button class="btn btn-secondary" id="downloadJsonBtn">
+                        <i class="fas fa-download"></i> Download JSON Report
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="rings-table" id="ringsTable">
+                        <thead>
+                            <tr>
+                                <th>Ring ID</th>
+                                <th>Pattern Type</th>
+                                <th>Member Count</th>
+                                <th>Risk Score</th>
+                                <th>Member Account IDs</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ringsTableBody">
+                            <!-- Data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Node Details Modal -->
+    <div class="modal" id="nodeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-circle"></i> Account Details</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="nodeDetails">
+                <!-- Details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/animation.js"></script>
+</body>
+</html>

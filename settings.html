@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinForensics | Settings</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="gradient-bg">
+        <div class="gradient-sphere"></div>
+        <div class="gradient-sphere-2"></div>
+        <div class="gradient-sphere-3"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>FinForensics</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                <a href="analysis.html"><i class="fas fa-search"></i> Analysis</a>
+                <a href="reports.html"><i class="fas fa-file-alt"></i> Reports</a>
+                <a href="settings.html" class="active"><i class="fas fa-cog"></i> Settings</a>
+            </div>
+            <div class="nav-status">
+                <span class="status-indicator"></span>
+                <span>Settings</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="hero-section">
+            <h1 class="glow-text">System <span class="gradient-text">Settings</span></h1>
+            <p class="subtitle">Configure detection parameters, notifications, and system preferences</p>
+        </div>
+
+        <div class="settings-layout">
+            <!-- Settings Navigation -->
+            <div class="settings-nav-panel">
+                <div class="settings-nav-header">
+                    <i class="fas fa-cog"></i>
+                    <h3>Settings Menu</h3>
+                </div>
+                <div class="settings-nav-menu">
+                    <button class="settings-nav-item active" data-section="general">
+                        <i class="fas fa-sliders-h"></i>
+                        <span>General</span>
+                    </button>
+                    <button class="settings-nav-item" data-section="detection">
+                        <i class="fas fa-search"></i>
+                        <span>Detection</span>
+                    </button>
+                    <button class="settings-nav-item" data-section="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </button>
+                    <button class="settings-nav-item" data-section="api">
+                        <i class="fas fa-code"></i>
+                        <span>API</span>
+                    </button>
+                    <button class="settings-nav-item" data-section="advanced">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Advanced</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Settings Content -->
+            <div class="settings-content-panel">
+                <!-- General Settings -->
+                <div class="settings-section active" id="general">
+                    <div class="settings-header">
+                        <h3>General Settings</h3>
+                        <p>Configure basic system preferences and appearance</p>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h4>System</h4>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">System Name</div>
+                                <div class="settings-item-desc">The name displayed in the header</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <input type="text" class="settings-input" id="systemName" value="FinForensics">
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Auto Refresh</div>
+                                <div class="settings-item-desc">Automatically refresh dashboard data</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <label class="switch">
+                                    <input type="checkbox" id="autoRefresh" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Refresh Interval</div>
+                                <div class="settings-item-desc">Seconds between auto-refreshes</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <input type="number" class="settings-input" id="refreshInterval" value="30" min="5" max="300" style="width: 100px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h4>Appearance</h4>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Theme</div>
+                                <div class="settings-item-desc">Choose color scheme</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <select class="settings-select" id="themeSelect">
+                                    <option value="dark">Dark (Default)</option>
+                                    <option value="light">Light</option>
+                                    <option value="system">System</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Animations</div>
+                                <div class="settings-item-desc">Enable visual effects and animations</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <label class="switch">
+                                    <input type="checkbox" id="animations" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detection Settings -->
+                <div class="settings-section" id="detection">
+                    <div class="settings-header">
+                        <h3>Detection Settings</h3>
+                        <p>Configure fraud detection algorithms and thresholds</p>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h4>Pattern Detection</h4>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Cycle Detection</div>
+                                <div class="settings-item-desc">Detect circular money flows (length 3-5)</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <label class="switch">
+                                    <input type="checkbox" id="cycleDetection" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Smurfing Detection</div>
+                                <div class="settings-item-desc">Detect fan-in/fan-out patterns</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <label class="switch">
+                                    <input type="checkbox" id="smurfingDetection" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Layered Shell Detection</div>
+                                <div class="settings-item-desc">Detect multi-hop transaction chains</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <label class="switch">
+                                    <input type="checkbox" id="layeredDetection" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h4>Thresholds</h4>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Min Cycle Length</div>
+                                <div class="settings-item-desc">Minimum accounts in a cycle</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <input type="number" class="settings-input" id="minCycleLength" value="3" min="2" max="4" style="width: 80px;">
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Max Cycle Length</div>
+                                <div class="settings-item-desc">Maximum accounts in a cycle</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <input type="number" class="settings-input" id="maxCycleLength" value="5" min="4" max="8" style="width: 80px;">
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Smurfing Threshold</div>
+                                <div class="settings-item-desc">Minimum transactions for smurfing</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <input type="number" class="settings-input" id="smurfingThreshold" value="5" min="3" max="20" style="width: 80px;">
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Risk Threshold</div>
+                                <div class="settings-item-desc">Minimum score to flag account</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <input type="number" class="settings-input" id="riskThreshold" value="30" min="0" max="100" style="width: 80px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications Settings -->
+                <div class="settings-section" id="notifications">
+                    <div class="settings-header">
+                        <h3>Notification Settings</h3>
+                        <p>Configure alert preferences and contact methods</p>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h4>Alerts</h4>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Email Alerts</div>
+                                <div class="settings-item-desc">Receive fraud alerts via email</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <label class="switch">
+                                    <input type="checkbox" id="emailAlerts">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">In-app Alerts</div>
+                                <div class="settings-item-desc">Show popup alerts for fraud</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <label class="switch">
+                                    <input type="checkbox" id="inAppAlerts" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Daily Reports</div>
+                                <div class="settings-item-desc">Email daily summary reports</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <label class="switch">
+                                    <input type="checkbox" id="dailyReports">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h4>Contact</h4>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Alert Email</div>
+                                <div class="settings-item-desc">Email address for alerts</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <input type="email" class="settings-input" id="alertEmail" placeholder="admin@example.com" style="width: 250px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Settings -->
+                <div class="settings-section" id="api">
+                    <div class="settings-header">
+                        <h3>API Settings</h3>
+                        <p>Configure API access and endpoints</p>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h4>Authentication</h4>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">API Key</div>
+                                <div class="settings-item-desc">Your secret API key</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <div class="api-key-group">
+                                    <input type="text" class="settings-input" id="apiKey" readonly value="sk_live_12345abcde67890">
+                                    <button class="btn-icon-small" id="copyApiKey" title="Copy">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                    <button class="btn-icon-small" id="regenerateApiKey" title="Regenerate">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">API Endpoint</div>
+                                <div class="settings-item-desc">Backend server URL</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <input type="url" class="settings-input" id="apiEndpoint" value="http://localhost:5000" style="width: 300px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Settings -->
+                <div class="settings-section" id="advanced">
+                    <div class="settings-header">
+                        <h3>Advanced Settings</h3>
+                        <p>System administration and data management</p>
+                    </div>
+                    
+                    <div class="settings-group danger-zone">
+                        <h4>Danger Zone</h4>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Reset All Settings</div>
+                                <div class="settings-item-desc">Restore default configuration</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <button class="btn btn-secondary" id="resetSettings">Reset</button>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Clear All Data</div>
+                                <div class="settings-item-desc">Delete all analysis data and reports</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <button class="btn btn-danger" id="clearData">Clear</button>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Export Settings</div>
+                                <div class="settings-item-desc">Download settings as JSON</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <button class="btn btn-secondary" id="exportSettings">Export</button>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <div class="settings-item-title">Import Settings</div>
+                                <div class="settings-item-desc">Load settings from file</div>
+                            </div>
+                            <div class="settings-item-control">
+                                <button class="btn btn-secondary" id="importSettings">Import</button>
+                                <input type="file" id="importFile" accept=".json" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/settings.js"></script>
+</body>
+</html>

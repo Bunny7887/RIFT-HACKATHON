@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinForensics | Analysis</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/analysis.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="gradient-bg">
+        <div class="gradient-sphere"></div>
+        <div class="gradient-sphere-2"></div>
+        <div class="gradient-sphere-3"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>FinForensics</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                <a href="analysis.html" class="active"><i class="fas fa-search"></i> Analysis</a>
+                <a href="reports.html"><i class="fas fa-file-alt"></i> Reports</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            </div>
+            <div class="nav-status">
+                <span class="status-indicator"></span>
+                <span>Analysis Mode</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="hero-section">
+            <h1 class="glow-text">Deep <span class="gradient-text">Analysis</span></h1>
+            <p class="subtitle">Comprehensive pattern analysis and fraud detection metrics</p>
+        </div>
+
+        <div class="analysis-dashboard" id="analysisDashboard">
+            <div class="analysis-card">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Pattern Distribution</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="patternChart"></canvas>
+                </div>
+            </div>
+
+            <div class="analysis-card">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Risk Score Distribution</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="riskChart"></canvas>
+                </div>
+            </div>
+
+            <div class="analysis-card full-width">
+                <div class="card-header">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Transaction Timeline</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="timelineChart"></canvas>
+                </div>
+            </div>
+
+            <div class="analysis-card">
+                <div class="card-header">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Network Statistics</h3>
+                </div>
+                <div class="stats-list">
+                    <div class="stat-item">
+                        <span>Network Density</span>
+                        <span class="stat-value" id="networkDensity">0.00</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Average Path Length</span>
+                        <span class="stat-value" id="avgPathLength">0.00</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Clustering Coefficient</span>
+                        <span class="stat-value" id="clusteringCoeff">0.00</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Centralization</span>
+                        <span class="stat-value" id="centralization">0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-card">
+                <div class="card-header">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Top Suspicious Accounts</h3>
+                </div>
+                <div class="suspicious-list" id="suspiciousList"></div>
+            </div>
+
+            <div class="analysis-card full-width">
+                <div class="card-header">
+                    <i class="fas fa-th"></i>
+                    <h3>Pattern Detection Matrix</h3>
+                </div>
+                <div class="matrix-container" id="patternMatrix"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/analysis.js"></script>
+</body>
+</html>

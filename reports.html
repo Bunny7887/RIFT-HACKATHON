@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinForensics | Reports</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/reports.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="gradient-bg">
+        <div class="gradient-sphere"></div>
+        <div class="gradient-sphere-2"></div>
+        <div class="gradient-sphere-3"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>FinForensics</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                <a href="analysis.html"><i class="fas fa-search"></i> Analysis</a>
+                <a href="reports.html" class="active"><i class="fas fa-file-alt"></i> Reports</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            </div>
+            <div class="nav-status">
+                <span class="status-indicator"></span>
+                <span>Reports</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="hero-section">
+            <h1 class="glow-text">Fraud Detection <span class="gradient-text">Reports</span></h1>
+            <p class="subtitle">Generate, view and download comprehensive analysis reports</p>
+        </div>
+
+        <div class="reports-layout">
+            <!-- Left Panel - Report Generation -->
+            <div class="reports-panel left-panel">
+                <div class="panel-header">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>Generate Reports</h3>
+                </div>
+                
+                <div class="report-options">
+                    <button class="report-option" onclick="generateReport('summary')">
+                        <i class="fas fa-file-alt"></i>
+                        <div class="option-content">
+                            <span class="option-title">Summary Report</span>
+                            <span class="option-desc">Overview of all transactions and fraud metrics</span>
+                        </div>
+                        <span class="report-badge">Quick</span>
+                    </button>
+                    
+                    <button class="report-option" onclick="generateReport('detailed')">
+                        <i class="fas fa-file-pdf"></i>
+                        <div class="option-content">
+                            <span class="option-title">Detailed Analysis</span>
+                            <span class="option-desc">In-depth transaction analysis with patterns</span>
+                        </div>
+                        <span class="report-badge">Comprehensive</span>
+                    </button>
+                    
+                    <button class="report-option" onclick="generateReport('fraud')">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div class="option-content">
+                            <span class="option-title">Fraud Ring Report</span>
+                            <span class="option-desc">Detailed fraud ring analysis and member lists</span>
+                        </div>
+                        <span class="report-badge">High Risk</span>
+                    </button>
+                    
+                    <button class="report-option" onclick="generateReport('transactions')">
+                        <i class="fas fa-exchange-alt"></i>
+                        <div class="option-content">
+                            <span class="option-title">Transaction Log</span>
+                            <span class="option-desc">Raw transaction data with timestamps</span>
+                        </div>
+                        <span class="report-badge">Raw Data</span>
+                    </button>
+                </div>
+
+                <div class="filter-section">
+                    <h4><i class="fas fa-filter"></i> Filter Options</h4>
+                    <div class="filter-grid">
+                        <div class="filter-item">
+                            <label>Date Range</label>
+                            <select class="filter-select" id="dateRange" onchange="updatePreview()">
+                                <option value="today">Today</option>
+                                <option value="week">Last 7 Days</option>
+                                <option value="month">Last 30 Days</option>
+                                <option value="all">All Time</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>Report Format</label>
+                            <select class="filter-select" id="reportFormat">
+                                <option value="pdf">PDF</option>
+                                <option value="json">JSON</option>
+                                <option value="csv">CSV</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="exportPDFBtn">
+                        <i class="fas fa-file-pdf"></i> Export PDF
+                    </button>
+                    <button class="btn btn-secondary" id="exportJSONBtn">
+                        <i class="fas fa-code"></i> Export JSON
+                    </button>
+                </div>
+            </div>
+
+            <!-- Middle Panel - Report Preview -->
+            <div class="reports-panel middle-panel">
+                <div class="panel-header">
+                    <i class="fas fa-eye"></i>
+                    <h3>Report Preview</h3>
+                    <span class="preview-date" id="previewDate"></span>
+                </div>
+                
+                <div class="preview-content" id="previewContent">
+                    <div class="preview-placeholder">
+                        <i class="fas fa-file-alt"></i>
+                        <p>Select a report type to preview</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Generated Reports List -->
+            <div class="reports-panel right-panel">
+                <div class="panel-header">
+                    <i class="fas fa-history"></i>
+                    <h3>Generated Reports</h3>
+                    <span class="report-count" id="reportCount">0</span>
+                </div>
+                
+                <div class="reports-list" id="reportsList">
+                    <div class="empty-state">
+                        <i class="fas fa-folder-open"></i>
+                        <p>No reports generated yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/reports.js"></script>
+</body>
+</html>
